@@ -36,6 +36,11 @@ public:
                     exit(EXIT_FAILURE);
                 }
             }
+            else if (peak().value() == '(') {
+                consume();
+                tokens.push_back({ .type = TokenType::OPEN_PAREM});
+                continue;
+            }
             else if (std::isdigit(peak().value())) {
                 buf.push_back(consume());
                 while (peak().has_value() && std::isdigit(peak().value())) {
@@ -43,6 +48,11 @@ public:
                 }
                 tokens.push_back({ .type = TokenType::INT_LIT, .value = buf });
                 buf.clear();
+                continue;
+            }
+            else if (peak().value() == ')') {
+                consume();
+                tokens.push_back({ .type = TokenType::CLOSE_PAREM});
                 continue;
             }
             else if (peak().value() == ';') {

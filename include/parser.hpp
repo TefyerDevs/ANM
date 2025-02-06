@@ -32,8 +32,18 @@ public:
         while (peak().has_value()) {
             if (peak().value().type == TokenType::EXIT) {
                 consume();
+                if (peak().has_value() && peak().value().type == TokenType::OPEN_PAREM) {
+                    consume();
+                }
+                else {
+                    std::cerr << "Invalid expression" << std::endl;
+                    exit(EXIT_FAILURE);
+                }
                 if (auto node_expr = parse_expr()) {
                     exit_node = NodeExit { .expr = node_expr.value() };
+                }
+                if (peak().has_value() && peak().value().type == TokenType::CLOSE_PAREM) {
+                    consume();
                 }
                 else {
                     std::cerr << "Invalid expression" << std::endl;
