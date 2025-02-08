@@ -1,6 +1,6 @@
-# MyLang Programming Language Documentation
+# ANM Programming Language Documentation
 
-Welcome to the MyLang programming language documentation. This document serves as a comprehensive guide to understanding the syntax and semantics of MyLang.
+Welcome to the ANM programming language documentation. This document serves as a comprehensive guide to understanding the syntax and semantics of ANM.
 
 ## Grammar
 
