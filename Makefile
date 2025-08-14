@@ -15,12 +15,12 @@ run: clean main
 	make build_script
 debug: clean main
 	./$(BUILD)main -c lang/test.anm -o lang/build/test.asm --debug
-	# make build_script
+	make build_script
 
 clean:
-	rm -f $(BUILD)main.o $(BUILD)main
+	rm -f $(BUILD)main.o $(BUILD)main lang/build/*.*
 build_script:
-	nasm -f elf32 -o lang/build/build/output.o lang/build/output.asm
+	nasm -o lang/build/test.o lang/build/test.asm
 	
 	
 .PHONY: all clean
