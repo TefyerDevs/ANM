@@ -99,7 +99,6 @@ void interpreter_string(int argc, char *argv[]){
 
 
 int main(int argc, char *argv[]){
-    cout << argc << endl;
     if( argc < 2 ){
         printf("Usage: %s -c <file>\n", argv[0]);
         return 1;
@@ -129,11 +128,13 @@ int main(int argc, char *argv[]){
     Generator generator(token_tree.value());
     {
         fstream file(output_file_name.c_str(),std::ios::out);
+        if (!file.is_open()) {
+            std::cerr << "Failed to open file: " << output_file_name << std::endl;
+            exit(-1);
+        }
         file << generator.generate();
+        file.close();
     }
-
-
-
 
     return 0;
 }
